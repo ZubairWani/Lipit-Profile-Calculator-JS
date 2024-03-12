@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipid Profile Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Lipid Profile Calculator</h1>
+        
+        <label for="totalCholesterol">Total Cholesterol (mg/dL):</label>
+        <input type="number" id="totalCholesterol" placeholder="Enter Total Cholesterol">
+
+        <label for="triglycerides">Triglycerides (mg/dL):</label>
+        <input type="number" id="triglycerides" placeholder="Enter Triglycerides">
+
+        <label for="hdl">HDL (mg/dL):</label>
+        <input type="number" id="hdl" placeholder="Enter HDL">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <div id="results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            var a = parseFloat(document.getElementById('totalCholesterol').value);
+            var b = parseFloat(document.getElementById('triglycerides').value);
+            var c = parseFloat(document.getElementById('hdl').value);
+
+            var vldl = b / 5;
+            var ldl = a - c - vldl;
+            var nonHDL = a - c;
+            var cholHDL = a / c;
+            var ldlHDL = ldl / c;
+
+            var results = "<p>LDL Cholesterol : " + ldl.toFixed(2) + " mg/dL</p>";
+            results += "<p>VLDL Cholesterol : " + vldl.toFixed(2) + " mg/dL</p>";
+            results += "<p>Non HDL Cholesterol : " + nonHDL.toFixed(2) + " mg/dL</p>";
+            results += "<p>Cholesterol/HDL Ratio : " + cholHDL.toFixed(2) + "</p>";
+            results += "<p>LDL/HDL Ratio : " + ldlHDL.toFixed(2) + "</p>";  
+            
+
+            document.getElementById('results').innerHTML = results;
+        }
+    </script>
+</body>
+</html>
